@@ -1,0 +1,57 @@
+--------------------------<<<The factorial program>>>--------------------------
+
+This program calculates the Factorial function. due to the hardware 
+limitations of 15 like higher value on 4 bit architecture, the only calculable
+Factorial numbers are 1,2,3 (Fact(4)=24 > 15). Also, this architecture doesn't 
+have inputs or outputs mechanism, then the memory cell 0 (mem[0]) is considered
+like the user input and memory cell 1 (mem[1]) is the architecture output. The 
+user has to enter manually the term to calculate in RAM ex: fill mem[0] with 3, 
+the program will produce the value 6 (Fact(3)=6) in mem[1]. Also, the user have 
+to initiate manually the output mem[1] with 1. Another thing is that the small 
+size of the PGM ROM makes it impossible to calculate multiplication, thus a 
+solution with precalculated multiplication table is used. The Table is as below :
+
+mem[2]=1 is for 1 x 1
+mem[3]=2 is for 1 x 2
+mem[4]=3 is for 1 x 3
+mem[5]=6 is for 2 x 3
+mem[7]=6 is for 1 x 6
+
+This 5 values are the only multiplication operations necessary to calculate 
+factorial 1,2 and 3. They have to be entered manually by the user (or by loading 
+Factorial.RAM file on memory). The multiplication of X*Y is done by adding X+Y 
+that being used like an index in the above multiplication table, thus X*Y = mem[X+Y], 
+ex: 2x3 = mem[2+3] = mem[5] = 6
+-------------------------------------------------------------------------------
+--------------------------------- Program -------------------------------------
+
+READ   0       -->  100-0 0000  -->  80  //  Addr = 0         ; | input is mem[0] 
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; | Acc <- mem[0]
+                                                                
+READ   1       -->  100-0 0001  -->  81  //  Addr = 1         ; | output is mem[1]
+ADD    mem     -->  001-1 0000  -->  30  //  Acc += mem[Addr] ; | Acc <- input + output
+STORE  F       -->  011-0 1111  -->  6F  //  mem[15] = Acc    ; | mem[15] <- Acc
+                                                                | mem[15] contain the   
+                                                                | multiplication table
+                                                                | index of input x output                                                           
+READ   F       -->  100-0 1111  -->  8F  //  Addr = 15        ; |
+READ   mem     -->  100-1 0000  -->  90  //  Addr = mem[Addr] ; |
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; | Acc <- mult_table[mem[15]]
+
+STORE  1       -->  011-0 0001  -->  61  //  mem[1] = Acc     ; | output <- Acc
+
+READ   0       -->  100-0 0000  -->  80  //  Addr = 0         ; |
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; |
+SUB    1       -->  010-0 0001  -->  41  //  Acc --           ; |
+STORE  0       -->  011-0 0000  -->  60  //  mem[0] = Acc     ; | input--
+
+IFZERO D       -->  110-0 1101  -->  CD  //  If(Acc==0)JmpTo13; | if (input==0) exit
+goto   0       -->  101-0 0000  -->  A0  //  Jmp to 0         ; | else goto adresse 0 
+
+--------------------------------- Program end----------------------------------
+-------------------------------------------------------------------------------
+
+
+
+
+

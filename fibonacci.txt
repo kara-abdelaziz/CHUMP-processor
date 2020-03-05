@@ -1,0 +1,43 @@
+--------------------<<<The fibonacci numbers program>>>-----------------------
+
+This program calculates the Fibonacci series numbers. due to the hardware 
+limitations of 15 like higher value on 4 bit architecture, the only calculable
+Fibonacci numbers are 2,3,5,8,13. Also, this architecture doesn't have inputs or
+outputs mechanism, then the memory cell 0 (mem[0]) is considered like the user
+input and memory cell 1 (mem[1]) is the architecture output. The user has to 
+enter manually the term to calculate in RAM ex: fill mem[0] with 3, the program
+will produce the value 5 in mem[1]. term1 and term2 are two variables for the
+program on mem[2] and mem[3], also have to be initiated by 1 and 1 manualy by
+the user due to the program memory shortage for a proper initialisation.
+
+-------------------------------------------------------------------------------
+--------------------------------- Program -------------------------------------
+
+
+READ   2       -->  100-0 0010  -->  82  //  Addr = 2         ; | term1 is mem[2]
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; | 
+READ   3       -->  100-0 0011  -->  83  //  Addr = 3         ; | term2 is mem[3]
+ADD    mem     -->  001-1 1101  -->  3D  //  Acc += mem[3]    ; | Acc <- term1 + term2
+STORE  1       -->  011-0 0001  -->  61  //  mem[1] = Acc     ; | result <- Acc
+                                                                | result is mem[1]                
+READ   3       -->  100-0 0011  -->  83  //  Addr = 3         ; |
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; | 
+STORE  2       -->  011-0 0001  -->  61  //  mem[2] = Acc     ; | term1 <- term2
+
+READ   1       -->  100-0 0001  -->  81  //  Addr = 1         ; |
+LOAD   mem     -->  000-1 0000  -->  10  //  Acc  = mem[Addr] ; |
+STORE  3       -->  011-0 0011  -->  63  //  mem[3] = Acc     ; | term2 <- result
+
+READ   0       -->  100-0 0000  -->  80  //  Addr = 0         ; | input is mem[0]
+SUB    1       -->  010-0 0001  -->  41  //  Acc --           ; |
+STORE  0       -->  011-0 0000  -->  60  //  mem[0] = Acc     ; | input--
+IFZERO 15      -->  110-0 1111  -->  CF  //  If(Acc==0)JmpTo15; | if (input==0) exit
+                                                                | else PC roll up to 0
+
+--------------------------------- Program end----------------------------------
+-------------------------------------------------------------------------------
+
+
+
+
+
