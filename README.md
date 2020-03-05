@@ -28,4 +28,4 @@ This project was first prescribed like a mini project for college students, it w
 - Credit to Ben Oztalay for the amazing 74xx Library. Some missing chips were added.
 
 ## Website:
-[www.el-kalam.com](https://www.el-kalam.com/): my personal website, contains this project and others.
+- [www.el-kalam.com](https://www.el-kalam.com/): my personal website, contains this project and others.
