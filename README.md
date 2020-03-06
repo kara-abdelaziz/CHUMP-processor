@@ -7,7 +7,7 @@ This project was first prescribed like a mini project for college students, it w
 
 ## CHUMP processor schematic on Logisim
 
-![CHUMP schematic](CHUMP schematic.png)
+![CHUMP schematic](https://github.com/kara-abdelaziz/CHUMP-processor/blob/master/CHUMP%20schematic.png)
 
 ## Files description:
 1. CHAMPS.circ : the main circuit with components created from scratch.
