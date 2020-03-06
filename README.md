@@ -1,5 +1,5 @@
 # CHUMP-processor
-CHUMP (for: Cheap Homebrew Understandable Minimal Processor) is a tiny processor intented to be implemeted with less than 10 TTL chips. from my experience i never saw more simplistic Do it Yourself processor. it was described by Dave Feinberg in his paper A Simple and Affordable TTL Processor for the Classroom. It premary tergets teaching porposes.
+CHUMP (for: Cheap Homebrew Understandable Minimal Processor) is a tiny 4 bits processor intented to be implemeted with less than 10 TTL chips. from my experience i never saw more simplistic Do it Yourself processor. it was described by Dave Feinberg in his paper A Simple and Affordable TTL Processor for the Classroom. It premary tergets teaching porposes.
 
 This repository contains two implementations of CHUMP using the digital simulator [Logisim](http://www.cburch.com/logisim/), one is totally identical to the paper circuit using the same TTL chips, the second use more generalists components each created from scratch with logic gates.
 
